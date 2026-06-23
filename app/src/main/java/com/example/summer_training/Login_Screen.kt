@@ -16,51 +16,51 @@ class Login_Screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_screen)
 
-        val tilEmail = findViewById<TextInputLayout>(R.id.tilEmail)
-        val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
-        val tilPassword = findViewById<TextInputLayout>(R.id.tilPassword)
-        val etPassword = findViewById<TextInputEditText>(R.id.etPassword)
-        val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
-        val tvSignUp = findViewById<TextView>(R.id.tvSignUp)
-        val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
+        val emailLayout = findViewById<TextInputLayout>(R.id.emailLayout)
+        val emailInput = findViewById<TextInputEditText>(R.id.email)
+        val passwordLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
+        val passwordInput = findViewById<TextInputEditText>(R.id.password)
+        val loginButton = findViewById<MaterialButton>(R.id.loginButton)
+        val signUpLink = findViewById<TextView>(R.id.signUp)
+        val forgotPasswordLink = findViewById<TextView>(R.id.forgotPassword)
 
-        btnLogin.setOnClickListener {
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        loginButton.setOnClickListener {
+            val emailText = emailInput.text.toString().trim()
+            val passwordText = passwordInput.text.toString().trim()
 
             var isValid = true
 
-            if (email.isEmpty()) {
-                tilEmail.error = "Email required"
+            if (emailText.isEmpty()) {
+                emailLayout.error = "Email required"
                 isValid = false
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                tilEmail.error = "Invalid email"
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+                emailLayout.error = "Invalid email"
                 isValid = false
             } else {
-                tilEmail.error = null
+                emailLayout.error = null
             }
 
-            if (password.isEmpty()) {
-                tilPassword.error = "Password required"
+            if (passwordText.isEmpty()) {
+                passwordLayout.error = "Password required"
                 isValid = false
             } else {
-                tilPassword.error = null
+                passwordLayout.error = null
             }
 
             if (isValid) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Dashboard_Activity::class.java)
-                intent.putExtra("USER_EMAIL", email)
+                intent.putExtra("USER_EMAIL", emailText)
                 startActivity(intent)
                 finish()
             }
         }
 
-        tvSignUp.setOnClickListener {
+        signUpLink.setOnClickListener {
             startActivity(Intent(this, SignUp_Screen::class.java))
         }
 
-        tvForgotPassword.setOnClickListener {
+        forgotPasswordLink.setOnClickListener {
             startActivity(Intent(this, Forgot_Password_Screen::class.java))
         }
     }

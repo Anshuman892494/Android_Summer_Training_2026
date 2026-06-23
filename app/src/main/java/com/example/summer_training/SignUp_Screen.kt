@@ -16,47 +16,47 @@ class SignUp_Screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_screen)
 
-        val tilName = findViewById<TextInputLayout>(R.id.tilName)
-        val etName = findViewById<TextInputEditText>(R.id.etName)
-        val tilEmail = findViewById<TextInputLayout>(R.id.tilEmail)
-        val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
-        val tilPassword = findViewById<TextInputLayout>(R.id.tilPassword)
-        val etPassword = findViewById<TextInputEditText>(R.id.etPassword)
-        val btnSignUp = findViewById<MaterialButton>(R.id.btnSignUp)
-        val tvLogin = findViewById<TextView>(R.id.tvLogin)
+        val nameLayout = findViewById<TextInputLayout>(R.id.nameLayout)
+        val nameInput = findViewById<TextInputEditText>(R.id.name)
+        val emailLayout = findViewById<TextInputLayout>(R.id.emailLayout)
+        val emailInput = findViewById<TextInputEditText>(R.id.email)
+        val passwordLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
+        val passwordInput = findViewById<TextInputEditText>(R.id.password)
+        val signUpButton = findViewById<MaterialButton>(R.id.signUpButton)
+        val loginLink = findViewById<TextView>(R.id.login)
 
-        btnSignUp.setOnClickListener {
-            val name = etName.text.toString().trim()
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        signUpButton.setOnClickListener {
+            val nameText = nameInput.text.toString().trim()
+            val emailText = emailInput.text.toString().trim()
+            val passwordText = passwordInput.text.toString().trim()
 
             var isValid = true
 
-            if (name.isEmpty()) {
-                tilName.error = "Name required"
+            if (nameText.isEmpty()) {
+                nameLayout.error = "Name required"
                 isValid = false
             } else {
-                tilName.error = null
+                nameLayout.error = null
             }
 
-            if (email.isEmpty()) {
-                tilEmail.error = "Email required"
+            if (emailText.isEmpty()) {
+                emailLayout.error = "Email required"
                 isValid = false
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                tilEmail.error = "Invalid email"
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+                emailLayout.error = "Invalid email"
                 isValid = false
             } else {
-                tilEmail.error = null
+                emailLayout.error = null
             }
 
-            if (password.isEmpty()) {
-                tilPassword.error = "Password required"
+            if (passwordText.isEmpty()) {
+                passwordLayout.error = "Password required"
                 isValid = false
-            } else if (password.length < 6) {
-                tilPassword.error = "Min 6 characters"
+            } else if (passwordText.length < 6) {
+                passwordLayout.error = "Min 6 characters"
                 isValid = false
             } else {
-                tilPassword.error = null
+                passwordLayout.error = null
             }
 
             if (isValid) {
@@ -67,7 +67,7 @@ class SignUp_Screen : AppCompatActivity() {
             }
         }
 
-        tvLogin.setOnClickListener {
+        loginLink.setOnClickListener {
             val intent = Intent(this, Login_Screen::class.java)
             startActivity(intent)
             finish()

@@ -13,12 +13,12 @@ class Forgot_Password_Screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
-        val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
-        val btnReset = findViewById<MaterialButton>(R.id.btnReset)
-        val tvBackToLogin = findViewById<TextView>(R.id.tvBackToLogin)
+        val emailInput = findViewById<TextInputEditText>(R.id.email)
+        val resetButton = findViewById<MaterialButton>(R.id.resetButton)
+        val backToLoginLink = findViewById<TextView>(R.id.backToLogin)
 
-        btnReset.setOnClickListener {
-            val email = etEmail.text.toString()
+        resetButton.setOnClickListener {
+            val email = emailInput.text.toString()
 
             if (email.isNotEmpty()) {
                 // Perform password reset logic here
@@ -29,7 +29,7 @@ class Forgot_Password_Screen : AppCompatActivity() {
             }
         }
 
-        tvBackToLogin.setOnClickListener {
+        backToLoginLink.setOnClickListener {
             finish()
         }
     }

@@ -12,14 +12,14 @@ class Dashboard_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val tvUserEmail = findViewById<TextView>(R.id.tvUserEmail)
-        val btnLogout = findViewById<MaterialButton>(R.id.btnLogout)
+        val userEmailView = findViewById<TextView>(R.id.userEmail)
+        val logoutButton = findViewById<MaterialButton>(R.id.logoutButton)
 
         // Get the email from Intent
         val email = intent.getStringExtra("USER_EMAIL")
-        tvUserEmail.text = email ?: "No Email Found"
+        userEmailView.text = email ?: "No Email Found"
 
-        btnLogout.setOnClickListener {
+        logoutButton.setOnClickListener {
             val intent = Intent(this, Login_Screen::class.java)
             // Clear backstack so user can't go back to dashboard after logout
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
