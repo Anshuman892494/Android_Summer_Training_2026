@@ -1,0 +1,30 @@
+package com.example.summer_training
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+
+class Dashboard_Activity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_dashboard)
+
+        val tvUserEmail = findViewById<TextView>(R.id.tvUserEmail)
+        val btnLogout = findViewById<MaterialButton>(R.id.btnLogout)
+
+        // Get the email from Intent
+        val email = intent.getStringExtra("USER_EMAIL")
+        tvUserEmail.text = email ?: "No Email Found"
+
+        btnLogout.setOnClickListener {
+            val intent = Intent(this, Login_Screen::class.java)
+            // Clear backstack so user can't go back to dashboard after logout
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
+}

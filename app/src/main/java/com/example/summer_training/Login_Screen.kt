@@ -49,7 +49,9 @@ class Login_Screen : AppCompatActivity() {
 
             if (isValid) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, MainActivity::class.java))
+                val intent = Intent(this, Dashboard_Activity::class.java)
+                intent.putExtra("USER_EMAIL", email)
+                startActivity(intent)
                 finish()
             }
         }
