@@ -3,12 +3,11 @@ package com.example.summer_training
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class Login_Screen : AppCompatActivity() {
 
@@ -16,11 +15,9 @@ class Login_Screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_screen)
 
-        val emailLayout = findViewById<TextInputLayout>(R.id.emailLayout)
-        val emailInput = findViewById<TextInputEditText>(R.id.email)
-        val passwordLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
-        val passwordInput = findViewById<TextInputEditText>(R.id.password)
-        val loginButton = findViewById<MaterialButton>(R.id.loginButton)
+        val emailInput = findViewById<EditText>(R.id.email)
+        val passwordInput = findViewById<EditText>(R.id.password)
+        val loginButton = findViewById<Button>(R.id.loginButton)
         val signUpLink = findViewById<TextView>(R.id.signUp)
         val forgotPasswordLink = findViewById<TextView>(R.id.forgotPassword)
 
@@ -31,20 +28,16 @@ class Login_Screen : AppCompatActivity() {
             var isValid = true
 
             if (emailText.isEmpty()) {
-                emailLayout.error = "Email required"
+                emailInput.error = "Email required"
                 isValid = false
             } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-                emailLayout.error = "Invalid email"
+                emailInput.error = "Invalid email"
                 isValid = false
-            } else {
-                emailLayout.error = null
             }
 
             if (passwordText.isEmpty()) {
-                passwordLayout.error = "Password required"
+                passwordInput.error = "Password required"
                 isValid = false
-            } else {
-                passwordLayout.error = null
             }
 
             if (isValid) {
